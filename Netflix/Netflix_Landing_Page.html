@@ -1,0 +1,559 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>Netflix</title>
+
+	<link rel="preconnect" href="https://fonts.googleapis.com">
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,700&display=swap" rel="stylesheet">
+	<style type="text/css">
+		::-webkit-scrollbar{
+			width: 0;
+			scroll-behavior: smooth;	
+		}
+		*{
+			margin: 0;
+			padding: 0;
+			box-sizing: border-box;
+			font-family: sans-serif;
+		}
+		body{
+			overflow-x: auto;
+		}
+		.container{
+			position: relative;
+			display: flex;
+			flex-direction: column;
+			gap: .5rem;
+			background: #222222;
+			width: 100%;
+			height: auto;
+		}
+		header{
+			position: relative;
+			width: 100%;
+			height: auto;
+			background-image: url('image/background.jpg');
+			background-size: cover;
+		}
+		header nav{
+			position: relative;
+			display: flex;
+			background-color: rgba(0, 0, 0, .7);
+			align-items: center;
+			justify-content: space-between;
+			opacity: 1;
+			width: 100%;
+			padding: 1rem 1rem;
+			height: auto;
+		}
+		header nav .menu img{
+			width: 9rem;
+			height: 3rem;
+		}
+		
+		header .menu{
+			position: relative;
+			display: flex;
+			align-items: center;
+			justify-content: center;
+			column-gap: 2rem;
+
+		}
+		.menu .list{
+			display: flex;
+			align-items: center;
+			justify-content: center;
+			column-gap: 1.5rem;
+		}
+		.menu .list a{
+			position: relative;
+			color: #fff;
+			text-decoration: none;
+			font-size: 1rem;
+			text-transform: uppercase;
+		}
+		.menu .list a::before{
+			content: '';
+			position: absolute;
+			height: 2px;
+			top: 100%;
+			width: 0;
+			left: 0;
+			background: red;
+			transition: .5s ease;
+		}
+		.menu .list a:hover::before{
+			width: 100%;
+		}
+		.login-lang{
+			position: relative;
+			column-gap: 1rem;
+			display: flex;
+			gap: 1.5rem;
+		}
+		select{
+			outline: none;
+			border: 1px solid #777;
+			border-radius: .3rem;
+			width: auto;
+			height: auto;
+			padding: .5rem;
+			color: #fff;
+			font-size: 1rem;
+			background: transparent;
+		}
+		select option{
+			color: #000;
+			background: transparent;
+		}
+		.btn-sign{
+			background: #ff0000;
+			outline: none;
+			border: none;
+			font-size: 1rem;
+			border-radius: .3rem;
+			color: #fff;
+			padding: .3rem 1rem;
+		}
+		.btn-sign:hover{
+			background: #dd0000;
+		}
+		header .content{
+			position: relative;
+			background-color: rgba(0, 0, 0, .7);
+			padding: 5rem 0;
+			width: 100%;
+			height: 84vh;
+			text-align: center;
+			justify-content: center;
+			color: #fff;
+		}
+		h1{
+			font-size: 3.5rem;
+			font-family: 'Poppins', sans-serif;
+			margin: 1rem;
+		}
+		h4{
+			font-size: 2rem;
+			font-family: 'Poppins', sans-serif;
+			margin: 1rem;
+		}
+		p{
+			font-size: 1.5rem;
+			margin: 1rem;
+			font-family: sans-serif;
+			font-weight: 100;
+		}
+		div .premium{
+			position: relative;
+			display: flex;
+			justify-content: center;
+			gap: 1rem;
+			height: auto;
+			width: auto;
+			margin: 2rem;
+		}
+		.content .premium input{
+			width: 20rem;
+			background: transparent;
+			outline: none;
+			border: 2px solid #777777;
+			border-radius: .2rem;
+			padding: 1rem;
+			font-size: 1.2rem;
+			color: #ffffff;
+		}
+		::placeholder { 
+		  color: #fff;
+		  opacity: 1; 
+		}
+		.account{
+			background: #ff0000;
+			color: #fff;
+			outline: none;
+			border: none;
+			padding: 1rem;
+			font-size: 1.2rem;
+			border-radius: .3rem;
+			font-weight: bold;
+			transition: .2s ease;
+		}
+		.account:hover{
+			background: #ee0000;
+		}
+		.container .watch-slider{
+			background-color: rgba(0, 0, 0, .7);
+			display: flex;
+			width: 100%;
+			height: auto;
+			flex-direction: column;
+			row-gap: 2rem;
+			padding: 1rem;
+		}
+		.watch-slider .slider-box{
+			position: relative;
+			width: 100%;
+			height: auto;
+			margin: 1.5rem 0;
+		}
+		.watch-slider .slider-box .heading{
+			font-size: 2rem;
+			font-weight: bold;
+			text-align: center;
+			color: #dd0000;
+			text-transform: uppercase;
+			margin-bottom: 1rem;
+		}
+		.heading span{
+			color: #fff;
+		}
+		.watch-slider .slider-box .slider{
+			width: 100%;
+			position: relative;
+			display: flex;
+			column-gap: 1rem;
+			background: transparent;
+			overflow-x: auto;
+		}
+		.slider-box .slider img{
+			width: 25rem;
+			height: 13rem;
+		}
+		.container .download{
+			display: flex;
+			background-color: rgba(0, 0, 0, .7);
+			width: 100%;
+			height: auto;
+		}
+		.download img{
+			width: 40%;
+			height: auto;
+		}
+		.download .content{
+			background: transparent;
+			display: flex;
+			flex-direction: column;
+			justify-content: center;
+			padding:0 2rem;
+		}
+		.download .content .h1{
+			color: #fff;
+			font-size: 3rem;
+			font-weight: bold;
+		}
+		.download .content .h4{
+			color: #fff;
+			font-size: 1.5rem;
+		}
+		.container .profile{
+			background-color: rgba(0, 0, 0, .7);
+			width: 100%;
+			height: auto;
+			display: flex;
+			flex-direction: row-reverse;
+		}
+		.profile img{
+			width: 40%;
+			height: auto;
+		}
+		.profile .content{
+			background: transparent;
+			display: flex;
+			flex-direction: column;
+			justify-content: center;
+			padding: 0 5rem;
+			column-gap: 10px;
+		}
+		.profile .content .h1{
+			color: #fff;
+			font-size: 3rem;
+			font-weight: bold;
+		}
+		.profile .content .h4{
+			color: #fff;
+			font-size: 1.5rem;
+		}
+		.footer{
+			background-color: rgba(0, 0, 0, .7);
+			display: flex;
+			flex-direction: column;
+			justify-content: center;
+			row-gap: 2rem;
+			width: 100%;
+			height: auto;
+			color: #fff;
+			padding: 1rem 15rem;
+		}
+		.footer .contact-no a{
+			color: #dd0000;
+		}
+		.footer .list-footer{
+			display: flex;
+			column-gap: 2rem;
+			justify-content: space-between;
+		}
+		.footer .list-footer .row{
+			display: flex;
+			flex-direction: column;
+
+		}
+		.footer .list-footer .row a{
+			margin-top: .2rem;
+			color: #fff;
+		}
+		.footer .list-footer .row a:hover{
+			color: #dd0000;
+		}
+		@media screen and (max-width: 834px){
+			header nav .menu img{
+				width: 7rem;
+				height: 2rem;
+			}
+			.menu .list{
+				column-gap: 1rem;
+			}
+			.menu .list a{
+				font-size: .8rem;
+			}
+			.login-lang{
+				display: flex;
+				column-gap: 1rem;
+			}
+			select{
+				padding: .3rem;
+				font-size: .4rem;
+			}
+			.btn-sign{
+				font-size: .6rem;
+				padding: .1rem .5rem;
+			}
+			.download .content .h1{
+				color: #fff;
+				font-size: 2rem;
+				font-weight: bold;
+			}
+			.download .content .h4{
+				color: #fff;
+				font-size: 1rem;
+			}
+			.profile .content .h1{
+				color: #fff;
+				font-size: 2rem;
+				font-weight: bold;
+			}
+			.profile .content .h4{
+				color: #fff;
+				font-size: 1rem;
+			}
+			.footer{
+				padding: 1rem 10rem;
+			}
+		}
+
+		@media screen and (max-width: 634px){
+			header nav .menu img{
+				width: 3.5rem;
+				height: 1.5rem;
+			}
+			.menu .list{
+				column-gap: .4rem;
+			}
+			.menu .list a{
+				font-size: .6rem;
+			}
+			.login-lang{
+				display: flex;
+				column-gap: .5rem;
+			}
+			select{
+				padding: .1rem;
+				font-size: .6rem;
+			}
+			.btn-sign{
+				font-size: .6rem;
+				padding: .1rem .3rem;
+			}
+			h1{
+				font-size: 3rem;
+			}
+			h4{
+				font-size: 1.5rem;
+			}
+			p{
+				font-size: 1rem;
+			}
+			.content .premium input{
+				width: 15rem;
+				padding: .6rem;
+				font-size: .8rem;
+			}
+			.account{
+				padding: .6rem;
+				font-size: .8rem;
+			}
+			.download .content .h1{
+				color: #fff;
+				font-size: 1.5rem;
+				font-weight: bold;
+			}
+			.download .content .h4{
+				color: #fff;
+				font-size: .5rem;
+			}
+			.profile .content .h1{
+				color: #fff;
+				font-size: 1.5rem;
+				font-weight: bold;
+			}
+			.profile .content .h4{
+				color: #fff;
+				font-size: .5rem;
+			}
+			.footer{
+				padding: .5rem 5rem;
+			}
+			.footer .contact-no{
+				font-size: .5rem;
+			}
+			.footer .contact-no a{
+				font-size: .5rem;
+			}
+			.footer .list-footer{
+				column-gap: 1rem;
+			}
+			.footer .list-footer .row a{
+				font-size: .5rem;
+			}
+		}
+	</style>
+</head>
+<body>
+	<div class="container">
+		<header>
+			<nav>
+				<div class="menu">
+					<img src="image/Netflix-logo.png">
+					<div class="list">
+						<a href="#">Home</a>
+						<a href="#">Tv Show</a>
+						<a href="#">Movies</a>
+						<a href="#">Latest</a>
+						<a href="#">My List</a>
+					</div>
+				</div>
+				<div class="login-lang">
+					<select>
+						<option>English</option>
+						<option>Hindi</option>
+						<option>Sanskrit</option>
+						<option>Punjabi</option>
+						<option>Tamil</option>
+						<option>Gujrati</option>
+					</select>
+					<button class="btn-sign">Sign In</button>
+				</div>
+			</nav>
+			<div class="content">
+				<h1>Unlimited movies, TV shows and more</h1>
+				<h2>Watch anywhere. Cancel anytime.</h2>
+				<p>Ready to watch? Enter your email to create or restart your membership.</p>
+				<div class="premium">
+					<input type="email" name="" placeholder="Email Address">
+					<button class="account">Get Started</button>
+				</div>
+			</div>
+		</header>
+		<div class="watch-slider">
+			<div class="slider-box">
+				<div class="heading">Trending on <span>Netflix</span></div>
+				<div class="slider">
+					<img src="image/trending-1.jfif">
+					<img src="image/trending-2.jfif">
+					<img src="image/trending-3.jfif">
+					<img src="image/trending-4.jfif">
+					<img src="image/trending-5.jfif">
+					<img src="image/trending-6.jfif">
+					<img src="image/trending-7.jfif">
+					<img src="image/trending-8.jfif">
+					<img src="image/trending-1.jfif">
+					<img src="image/trending-2.jfif">
+					<img src="image/trending-3.jfif">
+					<img src="image/trending-4.jfif">
+					<img src="image/trending-5.jfif">
+					<img src="image/trending-6.jfif">
+					<img src="image/trending-7.jfif">
+					<img src="image/trending-8.jfif">
+				</div>
+			</div>
+
+			<div class="slider-box">
+				<div class="heading">Watched on <span>Netflix</span></div>
+				<div class="slider">
+					<img src="image/watched-1.jfif">
+					<img src="image/watched-2.jfif">
+					<img src="image/watched-3.jfif">
+					<img src="image/watched-4.jfif">
+					<img src="image/watched-5.jfif">
+					<img src="image/watched-6.jfif">
+					<img src="image/watched-7.jfif">
+					<img src="image/watched-8.jfif">
+					<img src="image/watched-1.jfif">
+					<img src="image/watched-2.jfif">
+					<img src="image/watched-3.jfif">
+					<img src="image/watched-4.jfif">
+					<img src="image/watched-5.jfif">
+					<img src="image/watched-6.jfif">
+					<img src="image/watched-7.jfif">
+					<img src="image/watched-8.jfif">
+				</div>
+			</div>
+		</div>
+
+		<div class="download">
+			<img src="image/download.jfif">
+			<div class="content">
+				<p class="h1">Download your shows to watch offline</p>
+				<p class="h4">Save your favourites easily and always have something to watch.</h4>
+			</div>
+		</div>
+		<div class="profile">
+			<img src="image/kids.png">
+			<div class="content">
+				<p class="h1">Create profiles for kids</p>
+				<p class="h4">Send children on adventures with their favourite characters in a space made just for them—free with your membership.</p>
+			</div>
+		</div>
+
+		<div class="footer">
+			<div class="contact-no">Question? Call <a href="#">000-800-919-1694</a></div>
+			<div class="list-footer">
+				<div class="row">
+					<a href="#">FAQ</a>
+					<a href="#">Media Centre</a>
+					<a href="#">Ways to Watch</a>
+					<a href="#">Cookie Preferences</a>
+					<a href="#">Speed Test</a>
+				</div>
+				<div class="row">
+					<a href="#">Help Centre</a>
+					<a href="#">Investor Relations</a>
+					<a href="#">Terms of Use</a>
+					<a href="#">Corporate Information</a>
+					<a href="#">Legal Notices</a>
+				</div>
+				<div class="row">
+					<a href="#">Account</a>
+					<a href="#">Jobs</a>
+					<a href="#">Privacy</a>
+					<a href="#">Contact Us</a>
+					<a href="#">Only on Netflix</a>
+				</div>
+			</div>
+			<div>Netflix India</div>
+		</div>
+	</div>
+</body>
+</html>
